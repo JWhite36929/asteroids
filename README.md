@@ -1,7 +1,10 @@
 # Asteroids
 ## TODO
-- [ ] scoring system
+- [X] scoring system
 - [ ] health system
+    - [ ] invulnerable for 2 seconds after hit
+    - [ ] print damage to screen
+    - [ ] print game over to screen
 - [ ] background environment
 - [ ] explosion effect on hit
 - [ ] wrapping around screen

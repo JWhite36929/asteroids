@@ -44,15 +44,15 @@ def main():
 
         for asteroid in asteroids:
             if asteroid.collides_with(player):
-                print("Game Over!")
-                sys.exit()
+                player.hurt()
 
         for asteroid in asteroids:
             for shot in shots:
                 if asteroid.collides_with(shot):
+                    #largest asteroids have most points encouraging more chaotic gameplay
+                    player.score += asteroid.radius 
                     asteroid.split()
                     shot.kill()
-                    player.score += SCORE_INCREMENT
 
         screen.fill("black")
 
@@ -61,6 +61,9 @@ def main():
 
         score_text = font.render(f"Score: {player.score}", True, (255,255,255))
         screen.blit(score_text, (10,10))
+
+        health_text = font.render(f"Health: {player.health}", True, (255,255,255))
+        screen.blit(health_text, (10,65))
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000 #pauses game loop till 1/60th of a second passed

@@ -2,6 +2,7 @@ import pygame
 from circleshape import CircleShape
 from shot import Shot
 from constants import *
+import sys
 
 class Player(CircleShape):
     def __init__(self, x, y):
@@ -10,6 +11,7 @@ class Player(CircleShape):
         self.timer = 0
         self.health = PLAYER_HEALTH
         self.score = 0
+        self.health = 10
     
     def triangle(self):
         forward = pygame.Vector2(0,1).rotate(self.rotation)
@@ -55,4 +57,12 @@ class Player(CircleShape):
         self.timer = PLAYER_SHOOT_COOLDOWN
         shot = Shot(self.position.x, self.position.y)
         shot.velocity = pygame.Vector2(0,1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+
+    def hurt(self):
+        if self.health > 0:
+            self.health -= 1
+            print("OUCH")
+        else:
+            print("Game over!")
+            sys.exit()
         
